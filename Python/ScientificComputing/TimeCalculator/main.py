@@ -3,4 +3,4 @@
 from time_calculator import add_time
 
 
-print(add_time("11:43 AM", "00:20"))
+print(add_time("3:00 PM", "3:10"))

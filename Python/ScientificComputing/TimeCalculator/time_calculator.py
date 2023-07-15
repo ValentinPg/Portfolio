@@ -1,9 +1,15 @@
 def add_time(start, duration):
 
-    ending = bool()
+    ending = bool() # aca va almacenado el PM y el AM
+    #horas minutos y minutos que luego voy a imprimir
     horasFinal = 0
     minutosFInal=0
+    
+    #variable que almacena el "exceso" de horas al sumar minutos
     extraHoras = 0
+    
+    #variable que almacena el "exceso" de horas dias al sumar horas
+    extraDias = 0
 
     #separamos el PM y el AM de la hora
     n = start.split()
@@ -21,27 +27,41 @@ def add_time(start, duration):
     else:
         ending = False
         
-        
+    #calulo los minuts con un ciclo que va sumando de a 1, asi puedo verificar si llegué a 60
     minutosFInal = int(minutosStart)
     for _ in range(int(minutosDuration)):
+        minutosFInal+=1 
         if (minutosFInal==60):
             minutosFInal=0
-            extraHoras+=1
-        minutosFInal+=1      
+            extraHoras+=1 #agrego un excedente de minutos a horas
+             
     
+    #calulo las horas con un ciclo que va sumando de a 1, asi puedo verificar si llegué a 12
     horasFinal = int(horasStart)
     for _ in range(int(horasDuaration)+int(extraHoras)):
         if (horasFinal==12):
             horasFinal = 0
-            ending = not ending
+            ending = not ending #cambio de AM a PM y viceversa
         horasFinal+=1
+        
+        #este pedazo de codigo me sirve para verificar si hubo un cambiod e dia
+        if ((horasFinal==12)and(not ending)):
+            extraDias+=1
     
+    #paso el ending a AM y PM para imprimirlo
     if (ending == True):
         ending = "AM"
     else:
         ending = "PM"
+        
+    #calculate days later
+    daysLater = str()
+    if (extraDias==1):
+        daysLater = "(next day)"
+    elif (extraDias>1):
+        daysLater = f"{extraDias} days later"
     
-    tiempoFInal = "{0:02d}:{1:02d} {2}".format(horasFinal,minutosFInal,ending)
+    tiempoFInal = "{0:02d}:{1:02d} {2} {3}".format(horasFinal,minutosFInal,ending,daysLater)
     
     return tiempoFInal
     
