@@ -39,14 +39,15 @@ def add_time(start, duration):
     #calulo las horas con un ciclo que va sumando de a 1, asi puedo verificar si llegué a 12
     horasFinal = int(horasStart)
     for _ in range(int(horasDuaration)+int(extraHoras)):
-        if (horasFinal==12):
-            horasFinal = 0
-            ending = not ending #cambio de AM a PM y viceversa
         horasFinal+=1
-        
-        #este pedazo de codigo me sirve para verificar si hubo un cambiod e dia
-        if ((horasFinal==12)and(not ending)):
+        if ((horasFinal == 12) and (not ending)):
             extraDias+=1
+        if (horasFinal==13):
+            horasFinal = 1
+            ending = not ending #cambio de AM a PM y viceversa
+        
+        
+        
     
     #paso el ending a AM y PM para imprimirlo
     if (ending == True):
@@ -61,7 +62,7 @@ def add_time(start, duration):
     elif (extraDias>1):
         daysLater = f"{extraDias} days later"
     
-    tiempoFInal = "{0:02d}:{1:02d} {2} {3}".format(horasFinal,minutosFInal,ending,daysLater)
+    tiempoFInal = "{0:02d}:{1:02d} {2} ({3})".format(horasFinal,minutosFInal,ending,daysLater)
     
     return tiempoFInal
     
