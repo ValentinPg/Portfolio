@@ -1,6 +1,6 @@
 # FALTA ARREGLA EL TEMA DEL PARAMETRO OPCIONAL
 
-def add_time(start, duration, day=""):
+def add_time(start, duration, day=None):
 
     ending = bool() # aca va almacenado el PM y el AM
     #horas minutos y minutos que luego voy a imprimir
@@ -43,21 +43,18 @@ def add_time(start, duration, day=""):
     for _ in range(int(horasDuaration)+int(extraHoras)):
         horasFinal+=1
         # pedazo de codigo que me sirve para calcular el n days later
-        if ((horasFinal == 12) and (not ending)):
+        if ((horasFinal == 12) and (ending)):
             extraDias+=1
         # verifico que no me pase del 12 en las horas
         if (horasFinal==13):
             horasFinal = 1
             ending = not ending #cambio de AM a PM y viceversa
     
-    weekDays={1:"Monday",2:"Tuesday",3:"Wednesday",4:"Thursday",5:"Friday",6:"Saturday",7:"Sunday"}
-    if (day != ""):
-        for key,value in weekDays.items():
-            if  (value == day):
-                day = key
-        day = (day+extraDias)%7
-        if(day==0):
-            day+=1
+    weekDays=["monday", "tuesday", "wednesday", "thursday", "friday", "saturday", "sunday"]
+    if (day!=None):
+        day = weekDays.index(day.lower())
+        day += extraDias
+        day = weekDays[day%7].capitalize()
         
         
     
@@ -74,18 +71,20 @@ def add_time(start, duration, day=""):
     elif (extraDias>1):
         daysLater = f"{extraDias} days later"
     
-    if (day != ""):
-        tiempoFInal = "{0:02d}:{1:02d} {2} {3}".format(horasFinal,minutosFInal,ending,weekDays[day])
-    else:
-        tiempoFInal = "{0:02d}:{1:02d} {2} ({3})".format(horasFinal,minutosFInal,ending,daysLater)
+    tiempoFinal = "{0:0d}:{1:0d} {2}".format(horasFinal,minutosFInal,ending)
     
-    return tiempoFInal
+    if (day != None):
+        tiempoFinal += f", {day}"
+    
+    if (extraDias > 0):
+        tiempoFinal+= f" ({daysLater})"
+    
+    
+    
+
+    
+    return tiempoFinal
     
    
     
         
-
-
-
-
-    return 0
