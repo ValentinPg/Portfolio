@@ -24,9 +24,9 @@ def add_time(start, duration, day=None):
     horasDuaration, minutosDuration = duration.split(":")
     
     #me fijo si esta en PM o AM, AM = True, PM = False
-    if (n == "AM"):
+    if (n[1] == "AM"):
         ending = True
-    else:
+    elif (n[1] == "PM"):
         ending = False
         
     #calulo los minuts con un ciclo que va sumando de a 1, asi puedo verificar si llegué a 60
@@ -41,14 +41,19 @@ def add_time(start, duration, day=None):
     #calulo las horas con un ciclo que va sumando de a 1, asi puedo verificar si llegué a 12
     horasFinal = int(horasStart)
     for _ in range(int(horasDuaration)+int(extraHoras)):
+        
+        #si esta en 12 lo reseteo a 0
+        if (horasFinal == 12):
+            horasFinal = 0
+        
         horasFinal+=1
-        # pedazo de codigo que me sirve para calcular el n days later
-        if ((horasFinal == 12) and (ending)):
-            extraDias+=1
-        # verifico que no me pase del 12 en las horas
-        if (horasFinal==13):
-            horasFinal = 1
-            ending = not ending #cambio de AM a PM y viceversa
+        #me fijo si son las 12 para cambiar de AM a PM y además si hubo un cambio de dia
+        if ((horasFinal==12)):
+            ending = not ending
+            if ending:
+                extraDias+=1
+            
+            
     
     weekDays=["monday", "tuesday", "wednesday", "thursday", "friday", "saturday", "sunday"]
     if (day!=None):
@@ -71,7 +76,8 @@ def add_time(start, duration, day=None):
     elif (extraDias>1):
         daysLater = f"{extraDias} days later"
     
-    tiempoFinal = "{0:0d}:{1:0d} {2}".format(horasFinal,minutosFInal,ending)
+
+    tiempoFinal = "{0}:{1:02d} {2}".format(horasFinal,minutosFInal,ending)
     
     if (day != None):
         tiempoFinal += f", {day}"
@@ -84,7 +90,3 @@ def add_time(start, duration, day=None):
 
     
     return tiempoFinal
-    
-   
-    
-        
