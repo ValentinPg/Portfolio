@@ -35,7 +35,8 @@ class Category:
             return False
         
     def __str__(self) -> str:
-        top =  f"{self.cat}".center(30,"*")
+        resume =  f"{self.cat}".center(30,"*")
         for element in self.ledger:
-            top+= "\n"+ "{0:<23}{1:>7}".format((element["description"]),(element["amount"]))
-        return top
+            resume+= "\n"+ "{0:<23}{1:>7.2f}".format(str(element["description"])[:23],(element["amount"]))
+        resume += "\n" + f"Total: {self.funds}"
+        return resume
