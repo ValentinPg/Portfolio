@@ -34,9 +34,29 @@ class Rectangle:
         return string
     
     def get_amount_inside(self, shape):
-        timesWidth = int(shape.width / self.width)
-        timesHeight = int(shape.height / self.height)
+        timesWidth = int(self.width / shape.width)
+        timesHeight = int(self.height / shape.height)
         return timesHeight*timesWidth
     
 
+class Square(Rectangle):
+    
+    def __init__(self, length) -> None:
+        self.width = int(length)
+        self.height = int(length)
+        
+    def __str__(self) -> str:
+        return f"Square(side={self.width})"
+    
+    def set_side(self,length):
+        self.width = int(length)
+        self.height = int(length)
+        
+    def set_width(self,length):
+        self.width = int(length)
+        self.height = int(length)
+        
+    def set_height(self,length):
+        self.width = int(length)
+        self.height = int(length)
             
