@@ -45,15 +45,22 @@ def convert(lista):
         
        
 def experiment(hat, expected_balls, num_balls_drawn, num_experiments):
-    cont = 0
+    cont = 0    #contador de coincidencias
+    
     for _ in range(num_experiments):
-        case = hat.draw(num_balls_drawn)
-        try:
-            converted = convert(case)
-            for key in expected_balls:
-                if (converted[key]>=expected_balls[key]):
-                    cont+=1
-        except KeyError:
-            continue
+        i=0     #contador de coincidencias dentro de cada caso
+        case = copy.deepcopy(hat).draw(num_balls_drawn) #copiamos para no tener problemas con el draw (ya que me vacia el Hat)
+        converted = convert(case) #convierto el la lista de las bolas en un diccionario para poder compararlo mas facilmente con el expected balls
         
+        for key in expected_balls:
+            # Si la key existe, comparo si es mayor o igual en mi draw
+            if ((key in converted) and (converted[key]>=expected_balls[key])):
+                i+=1    #si se cumple sumo uno a mi contador de draw
+                
+            # Si el contador de draws llegó a  la misma longitud que mi diccionario de expected, significa que todas las bolas de expected estan en el draw, por lo que puedo aumentar mi contador de coincidencias
+            if (i== len(expected_balls)):
+                cont+=1 
+                break
+        
+
     return cont/num_experiments
