@@ -1,6 +1,7 @@
 import clases
 
 def menu():
+    clases.DataBase()
     print("--Bienvenido--")
     print('Ingrese una opción:\n1-Buscar Cliente\n2-Agregar Cliente\n0-Salir')
     op = int(input("->"))

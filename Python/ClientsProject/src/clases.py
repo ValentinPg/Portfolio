@@ -1,3 +1,6 @@
+import sqlite3
+import os
+
 class Client():
     
     def __init__(self, name='NULL', surname='NULL', dni='NULL') -> None:
@@ -33,6 +36,12 @@ class Menu():
     def searchClient(self):
         pass
 
-        
+
+class DataBase():
     
+    def __init__(self) -> None:
+        db_path = (os.path.join(os.getcwd(),'Python','ClientsProject','db','clients.db')) #obtengo el path de la carpeta db y le agrego la db
+        
+        
+        conn = sqlite3.connect(db_path)
         
