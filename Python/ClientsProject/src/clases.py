@@ -39,9 +39,22 @@ class Menu():
 
 class DataBase():
     
+    #cada vez que cree el objeto base de datos voy a querer que me conecte con 'clients.db'
     def __init__(self) -> None:
         db_path = (os.path.join(os.getcwd(),'Python','ClientsProject','db','clients.db')) #obtengo el path de la carpeta db y le agrego la db
+        try:
+            conn = sqlite3.connect(db_path)
+        except Exception():
+            return 'Error al conectar co la base de datos'
+        
+        self.c = conn.cursor()
         
         
-        conn = sqlite3.connect(db_path)
+        #deberia trabajar con diccionarios? LIstas? o Tuplas?
+    def createTable(self, diccionario):
+        self.c.execute(f'''
+                       CREATE TABLE if not exists {diccionario['table_name']}(
+                           placeholder int
+                       ) 
+                       ''')
         
