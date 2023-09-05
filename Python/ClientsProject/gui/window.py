@@ -40,5 +40,5 @@ class App():
 
 
 #Mantenemos la ventana abierta hasta que el ussuario la cierre
-root.mainloop()    
+ 
 

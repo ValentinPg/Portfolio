@@ -1,4 +1,5 @@
-import clases
+import src.clases
+import gui.window
 import sys
 
 
@@ -22,6 +23,8 @@ import sys
 # while 1:
 #     menu()
 
-window.App()
+app = gui.window.App()
+
+app.root.mainloop()
     
 
