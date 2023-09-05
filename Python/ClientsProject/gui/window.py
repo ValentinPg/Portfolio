@@ -1,15 +1,28 @@
 import tkinter as tk
 
 #creo ventana y ajusto tamaño
-root = tk.Tk()
-root.geometry("800x700")
-root.title("Aplicación Clientes")
+
+class App():
+    
+    def __init__(self) -> None:
+        self.root = tk.Tk()
+        self.root.geometry("800x700")
+        self.root.title("Aplicación Clientes")
+        
+        self.title()
+        self.button_new_table()
+
+    def title(self):
+        label = tk.Label(self.root, text='Clientes', font=("Times New Roman",20))
+        
+    def button_new_table(self):
+        new_table_b = tk.Button(self.root, text="Crear Tabla")
+        new_table_b.pack()
 
 
-#creo titulo
 
-label = tk.Label(root, text='Clientes', font=("Times New Roman",20))
-label.pack()
+
+
 
 
 

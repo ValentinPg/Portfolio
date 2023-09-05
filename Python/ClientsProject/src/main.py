@@ -1,4 +1,6 @@
 import clases
+import sys
+
 
 # def menu():
 #     print("--Bienvenido--")
@@ -19,6 +21,7 @@ import clases
         
 # while 1:
 #     menu()
+
+window.App()
     
-diccionario = {"table_name":"Personas", "pk":"id"}
-clases.DataBase().createTable(diccionario)
+
