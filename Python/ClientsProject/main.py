@@ -23,8 +23,8 @@ import sys
 # while 1:
 #     menu()
 
-app = gui.window.App()
+gui.window.menu()
 
-app.root.mainloop()
+
     
 
