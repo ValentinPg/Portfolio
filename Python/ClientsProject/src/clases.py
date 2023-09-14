@@ -54,7 +54,8 @@ class DataBase():
     def createTable(self, diccionario):
         self.c.execute(f'''
                        CREATE TABLE if not exists {diccionario['table_name']}(
-                           placeholder int
+                           {diccionario["pk"]} {diccionario["pk_type"]},
+                           PRIMARY KEY({diccionario["pk"]})
                        ) 
                        ''')
         

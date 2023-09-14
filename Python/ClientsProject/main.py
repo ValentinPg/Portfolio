@@ -1,4 +1,4 @@
-import src.clases
+from src.clases import *
 import gui.window
 import sys
 
@@ -22,8 +22,8 @@ import sys
         
 # while 1:
 #     menu()
-
-gui.window.menu()
+db = DataBase()
+gui.window.menu(db)
 
 
     
