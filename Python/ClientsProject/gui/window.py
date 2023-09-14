@@ -18,7 +18,7 @@ def submenuAdd(root, db):
     title_box = tk.Entry(child_w)#pido el titulod e la tabla
     label_box = tk.Entry(child_w)#pido el pk de la tabla
     type_combo = ttk.Combobox(child_w, values=["INTEGER", "TEXT", "BLOB", "REAL", "NUMERIC"]) # creo la lista desplegable
-    finish_button = tk.Button(child_w, text="Terminar", command=lambda:db.createTable({"table_name":title_box.get(), "pk": label_box.get(), "pk_type": type_combo.get()}))
+    finish_button = tk.Button(child_w, text="Terminar", command=lambda:[db.createTable({"table_name":title_box.get(), "pk": label_box.get(), "pk_type": type_combo.get()}), child_w.destroy()])
     
     # Acomodo los widgets
     label_title_table.pack()
@@ -31,7 +31,7 @@ def submenuAdd(root, db):
     
     finish_button.pack(pady=40)
     
-    #tk.Button(child_w, text="Confirmar Titulo", command= lambda: print(title.get())).pack()
+
 
 
 def menu(db):
