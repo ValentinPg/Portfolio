@@ -59,3 +59,13 @@ class DataBase():
                        ) 
                        ''')
         
+    def tablesList(self):
+        self.c.execute(f'''
+                              SELECT name FROM sqlite_schema
+                              WHERE type='table'
+                              ORDER BY name;
+                              ''')
+        return self.c.fetchall()
+        
+
+        

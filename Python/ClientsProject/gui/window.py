@@ -31,6 +31,21 @@ def submenuAdd(root, db):
     
     finish_button.pack(pady=40)
     
+    
+
+def submenuView(root, db):
+    child_w = tk.Toplevel(root)
+    child_w.geometry("500x500")
+    child_w.title("Ver tabla")
+    
+    label_title_table = tk.Label(child_w, text="Elija la tabla") #creo el label
+    table_combo = ttk.Combobox(child_w, values=db.tablesList()) # creo la lista desplegable
+    
+    
+    label_title_table.pack()
+    table_combo.pack()
+    
+    
 
 
 
@@ -43,6 +58,9 @@ def menu(db):
     
     new_table_b = tk.Button(root, text="Crear Tabla", command=partial(submenuAdd, root, db))
     new_table_b.pack()
+    
+    view_table_b = tk.Button(root, text="Ver tabla", command=partial(submenuView, root, db))
+    view_table_b.pack()
     
     
 
