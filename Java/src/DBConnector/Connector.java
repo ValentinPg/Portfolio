@@ -14,12 +14,13 @@ public class Connector {
 		}
 	}
 
-	private Statement createStatement() {
+	private Statement createStatement(){
 		try {
 			return miConector.createStatement();
 		} catch(Exception e){
 			System.out.println("Error al crear el Statement");
-		} 
+		}
+		return null; 
 	}
 	
 	public String searchDni(int dni, String grupo) {
@@ -28,8 +29,8 @@ public class Connector {
 			return miR.getString("nombre");
 		} catch (Exception e) {
 			System.out.println("Error en el Query");
-			return "Sin resultados";
 		}
+		return null;
 	}
 	
 	
