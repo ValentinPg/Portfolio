@@ -14,8 +14,22 @@ public class Connector {
 		}
 	}
 
-	public Connection getMiConector() {
-		return miConector;
+	private Statement createStatement() {
+		try {
+			return miConector.createStatement();
+		} catch(Exception e){
+			System.out.println("Error al crear el Statement");
+		} 
+	}
+	
+	public String searchDni(int dni, String grupo) {
+		try {
+			ResultSet miR = createStatement().executeQuery("SELECT" + " * " + " FROM " + grupo + " WHERE dni == " + dni);
+			return miR.getString("nombre");
+		} catch (Exception e) {
+			System.out.println("Error en el Query");
+			return "Sin resultados";
+		}
 	}
 	
 	
