@@ -23,15 +23,34 @@ public class Connector {
 		return null; 
 	}
 	
-	public String searchDni(int dni, String grupo) {
+	public ResultSet searchAll(String table) {
 		try {
-			ResultSet miR = createStatement().executeQuery("SELECT" + " * " + " FROM " + grupo + " WHERE dni == " + dni);
-			return miR.getString("nombre");
-		} catch (Exception e) {
-			System.out.println("Error en el Query");
+			return createStatement().executeQuery("SELECT * FROM "+ table);
+		} catch(Exception e) {
+			System.out.println("Error al realizar el Query");
+			return null;
 		}
-		return null;
 	}
+	
+	public void print(ResultSet q) {
+		try {
+			while(q.next()) {
+				System.out.println(q.getString("nombre")+" "+ q.getString("apellido")+" "+q.getString("dni"));
+			}
+		} catch(Exception e) {
+			System.out.println("Error al recorrer el Resultset");
+		}
+	}
+	
+//	public String searchDni(int dni, String grupo) {
+//		try {
+//			ResultSet miR = createStatement().executeQuery("SELECT" + " * " + " FROM " + grupo + " WHERE dni == " + dni);
+//			return miR.getString("nombre");
+//		} catch (Exception e) {
+//			System.out.println("Error en el Query");
+//		}
+//		return null;
+//	}
 	
 	
 	
